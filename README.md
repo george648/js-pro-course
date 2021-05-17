@@ -1,9 +1,10 @@
-  - #Name: George
-  - ## SurName: Balashevich ;
-  - ### age: 24;
+# js-pro-course
+pro-lessons
 
-  ***
+# Description
 
-  _text_
+  - **Name : George**;
+  - _surname : Balashevich;_
+  - __age: 24__;
 
-[![link github](./img/avatar.png)](https://github.com/george648/js-pro-course)
+[![link to my github](./img/avatar.png)](https://github.com/george648)
