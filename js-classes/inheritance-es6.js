@@ -26,34 +26,33 @@ class Car {
     }
 
     calculateWay(kilometers, fuel) {
-        const speed = 90;
+        const speed = this.maxSpeed;
         const maxWay = this.fuelConsumption * this.fuelCapacity;
         const averageRoadTime = kilometers / speed;
         const refueling = Math.floor(kilometers / maxWay);
         
         if (fuel < 10) {
-            alert('please, refueling your car!'+' Time of your way trip will be ' + averageRoadTime + ' hours')
+            alert(`please, refueling your car! Time of your way trip will be ${averageRoadTime} hours`)
         };
         if(refueling >= 1) {
             alert(`Your car have to refuel ${refueling} time(s)`)
         }
-        alert('Time of your way trip will be ' + averageRoadTime.toFixed(1) + ' hours')
+        alert(`Time of your way trip will be ${averageRoadTime.toFixed(1)} hours`)
     }
 }
 
 const volvo = new Car('volvo', 740, 1987, 'silver', 250);
-// const res = volvo.calculateWay(599, 15);
+
 
 class Lexus extends Car {
     constructor(name, model, year, color, maxSpeed, fuelCapacity = 60, fuelConsumption = 10, cylinder) {
-        super (name, model, year, color, maxSpeed, fuelCapacity, fuelConsumption)
+        super (name, model, year, color, maxSpeed, fuelCapacity, fuelConsumption);
             this.cylinder = cylinder;
-    }
-
+    };
     heatedSeats() {
         return true
     }
 };
 
 const lexusLC = new Lexus('lexus', 'LS', 2019, 'black', 200, 60, 15, 8);
-const res = lexusLC.calculateWay(2400, 15)
+const res = lexusLC.calculateWay(2400, 15);
