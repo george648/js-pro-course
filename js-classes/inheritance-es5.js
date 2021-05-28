@@ -46,11 +46,11 @@ function BMW(name, model, year, color, maxSpeed, fuelCapacity = 60, fuelConsumpt
     this.cylinder = cylinder;
 }; 
 
-BMW.prototype.climateControl = function() {
+BMW.prototype.hasClimateControl = function() {
     return true
 };
 
-BMW.prototype.roofWithPanoramicView = function() {
+BMW.prototype.hasRoofWithPanoramicView = function() {
     return false
 };
 

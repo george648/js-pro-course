@@ -49,7 +49,7 @@ class Lexus extends Car {
         super (name, model, year, color, maxSpeed, fuelCapacity, fuelConsumption);
             this.cylinder = cylinder;
     };
-    heatedSeats() {
+    hasHeatedSeats() {
         return true
     }
 };
