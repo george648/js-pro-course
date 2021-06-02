@@ -1,5 +1,4 @@
 
-*.cache/*
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -9,5 +8,7 @@
 
 .history/
 
+
 node_modules/
 dist/
+.cache/
