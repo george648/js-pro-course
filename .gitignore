@@ -1,4 +1,4 @@
-*txt 
+.history/
 
 .vscode/*
 !.vscode/settings.json
@@ -7,4 +7,7 @@
 !.vscode/extensions.json
 *.code-workspace
 
-.history/
+node_modules/
+dist/
+.cache/
+
