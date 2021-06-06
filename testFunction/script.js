@@ -17,19 +17,20 @@ const bookArray = [
     },
 ];
 
-const arr = [];
-
 function getValuesByProperty(array, property) {
-    const result = [];
-    // const res = property;
     if (array.length === 0) {
         return 'Array cannot be an empty'
     };
+    const result = [];
 
-    return array.find(element => {
-        console.log(element.property);
+    return array.map(element => {
+        if(element[property]) {
+            const res = element[property];
+            result.push(res);
+            console.log(result)
+            return result
+        }
     })
-    
 };
 
-getValuesByProperty(bookArray, 'yearOfPublication')
+getValuesByProperty(bookArray, 'movie');
