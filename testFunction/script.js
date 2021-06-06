@@ -17,20 +17,22 @@ const bookArray = [
     },
 ];
 
+const arr = [];
+
 function getValuesByProperty(array, property) {
     if (array.length === 0) {
         return 'Array cannot be an empty'
     };
     const result = [];
-
-    return array.map(element => {
+    array.map(element => {
         if(element[property]) {
-            const res = element[property];
-            result.push(res);
-            console.log(result)
-            return result
+            result.push(element[property]);
         }
     })
+    return result || 'There is no such properties'
 };
 
-getValuesByProperty(bookArray, 'movie');
+// const res = getValuesByProperty(bookArray, 'yearOfPublication');
+// console.log(res);
+const res = getValuesByProperty(bookArray, 'moedavie');
+console.log(res);
