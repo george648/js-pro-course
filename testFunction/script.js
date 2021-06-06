@@ -35,11 +35,11 @@ function getValuesByProperty(array, property) {
     if (!array.length) {
         return 'Array cannot be an empty'
     } else {
-        return result 
+        return result || string
     }
 };
 
-const res = getValuesByProperty(bookArray, 'movie');
+const res = getValuesByProperty(bookArray, 'mosvie');
 console.log(res);
 
 module.exports = {bookArray, getValuesByProperty};
