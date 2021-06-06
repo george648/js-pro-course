@@ -1,3 +1,5 @@
+// "test": "echo \"Error: no test specified\" && exit 1",
+
 const bookArray = [
     {
         'book': 'Harry potter and the Prisoner of Azkaban',
@@ -20,19 +22,26 @@ const bookArray = [
 const arr = [];
 
 function getValuesByProperty(array, property) {
-    if (array.length === 0) {
-        return 'Array cannot be an empty'
-    };
     const result = [];
+    const string = 'There is no such properties';
     array.map(element => {
         if(element[property]) {
             result.push(element[property]);
+        } else {
+            return 
         }
-    })
-    return result || 'There is no such properties'
+    });
+
+    if (!array.length) {
+        return 'Array cannot be an empty'
+    } else {
+        return result 
+    }
 };
 
-// const res = getValuesByProperty(bookArray, 'yearOfPublication');
-// console.log(res);
-const res = getValuesByProperty(bookArray, 'moedavie');
+const res = getValuesByProperty(bookArray, 'movie');
 console.log(res);
+
+module.exports = {bookArray, getValuesByProperty};
+// export {bookArray};
+// export {bookArgetValuesByPropertyray};
