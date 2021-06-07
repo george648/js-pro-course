@@ -1,5 +1,12 @@
-.vscode/
+.history/
 
-trash/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
 
-*txt 
+node_modules/
+dist/
+.cache/
