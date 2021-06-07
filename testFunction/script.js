@@ -27,19 +27,23 @@ function getValuesByProperty(array, property) {
     array.map(element => {
         if(element[property]) {
             result.push(element[property]);
-        } else {
-            return 
         }
+    });
+
+    const hasProperty = array.some((prop) => {
+        return prop[property]
     });
 
     if (!array.length) {
         return 'Array cannot be an empty'
+    } else if(!hasProperty) {
+        return string
     } else {
-        return result || string
+        return result
     }
 };
 
-const res = getValuesByProperty(bookArray, 'mosvie');
+const res = getValuesByProperty(bookArray, 'yearOfPublication');
 console.log(res);
 
 module.exports = {bookArray, getValuesByProperty};
