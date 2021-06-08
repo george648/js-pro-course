@@ -1,10 +1,15 @@
-// "test": "echo \"Error: no test specified\" && exit 1",
+const { isUndefined } = require("util");
+
+const DEFAULT_STRING_IF_NOT_FOUND_PROPERTY = 'There is no such properties';
+const DEFAULT_STRING_IF_ARRAY_IS_EMPTY  = 'Array cannot be an empty';
 
 const bookArray = [
     {
         'book': 'Harry potter and the Prisoner of Azkaban',
         'author': 'J.K. Rowling',
-        'yearOfPublication': 1999
+        'yearOfPublication': 1999,
+        'movie': undefined
+
     },
     {
         'book': 'Harry potter and the Goblet of Fire',
@@ -15,37 +20,30 @@ const bookArray = [
     {
         'book': 'Harry potter and the Prisoner of Azkaban',
         'author': 'J.K. Rowling',
-        'movie': 2009
+        'movie': null
     },
 ];
 
-const arr = [];
-
 function getValuesByProperty(array, property) {
     const result = [];
-    const string = 'There is no such properties';
-    array.map(element => {
-        if(element[property]) {
-            result.push(element[property]);
-        }
-    });
 
-    const hasProperty = array.some((prop) => {
+    const hasProperty = array.filter((prop) => {
+        if(prop[property]) {
+            result.push(prop[property]);
+        }
         return prop[property]
     });
 
     if (!array.length) {
-        return 'Array cannot be an empty'
+        return DEFAULT_STRING_IF_ARRAY_IS_EMPTY
     } else if(!hasProperty) {
-        return string
+        return DEFAULT_STRING_IF_NOT_FOUND_PROPERTY
     } else {
         return result
     }
 };
 
-const res = getValuesByProperty(bookArray, 'yearOfPublication');
+const res = getValuesByProperty(bookArray, 'movie');
 console.log(res);
 
 module.exports = {bookArray, getValuesByProperty};
-// export {bookArray};
-// export {bookArgetValuesByPropertyray};
