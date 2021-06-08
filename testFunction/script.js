@@ -1,5 +1,3 @@
-const { isUndefined } = require("util");
-
 const DEFAULT_STRING_IF_NOT_FOUND_PROPERTY = 'There is no such properties';
 const DEFAULT_STRING_IF_ARRAY_IS_EMPTY  = 'Array cannot be an empty';
 
@@ -20,30 +18,29 @@ const bookArray = [
     {
         'book': 'Harry potter and the Prisoner of Azkaban',
         'author': 'J.K. Rowling',
-        'movie': null
+        'movie': 2009
     },
 ];
 
 function getValuesByProperty(array, property) {
-    const result = [];
-
-    const hasProperty = array.filter((prop) => {
-        if(prop[property]) {
-            result.push(prop[property]);
-        }
-        return prop[property]
-    });
-
     if (!array.length) {
         return DEFAULT_STRING_IF_ARRAY_IS_EMPTY
-    } else if(!hasProperty) {
+    };
+
+    const hasItem = array.some((item)=> item[property]);
+    
+    if(!hasItem) {
         return DEFAULT_STRING_IF_NOT_FOUND_PROPERTY
-    } else {
-        return result
-    }
+    };
+
+    const masthesObject = array
+    .filter((item) => item[property])
+    .map((item) => item[property]);
+ 
+    return masthesObject
 };
 
-const res = getValuesByProperty(bookArray, 'movie');
+const res = getValuesByProperty(bookArray, 'movise');
 console.log(res);
 
 module.exports = {bookArray, getValuesByProperty};
