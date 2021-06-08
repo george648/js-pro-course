@@ -2,7 +2,6 @@ import {getValuesByProperty} from './../script.js';
 
 describe('getValuesByProperty', () => {
 
-    describe('getValuesByProperty', () => {
         it('must return new array of properties', () => {
             const array = [
                 {
@@ -28,17 +27,13 @@ describe('getValuesByProperty', () => {
      
             expect(result).toEqual([2005, 2009]);
          })
-    });
 
-    describe('getValuesByProperty', () => {
         it(`must return string 'Array cannot be an empty' `, () => {
             const array = [];
             const result = getValuesByProperty(array, 'movie');
             expect(result).toBe('Array cannot be an empty')
          })
-    });
 
-    describe('getValuesByProperty', () => {
         it(`must return string 'There is no such properties' `, () => {
             const array = [
                 {
@@ -61,6 +56,5 @@ describe('getValuesByProperty', () => {
            ];
             const result = getValuesByProperty(array, 'movsie');
             expect(result).toBe('There is no such properties')
-         })
-    });   
+         })  
 })
