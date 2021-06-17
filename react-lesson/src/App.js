@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { Article } from './components/Article';
-import data  from './components/data.json';
+import { Article } from './components/Article/Article';
+import data  from './json/data.json';
 
 
-function App(props) {
+function App() {
   const [articles, setArticles] = useState(data);
   const sayHi = () => console.log(3123)
   const onChange = ({target: {value}}) => {

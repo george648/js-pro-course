@@ -1,8 +1,8 @@
 import React from 'react';
-import { Author } from './author';
-import { Description } from './description'
-import { Date } from './date';
-import { Title } from './title';
+import { Author } from './../author/author';
+import { Description } from './../description/description';
+import { Date } from './../date/date';
+import { Title } from './../title/title';
 
 export function Articles ({author, description, date, title}) {
     return (
