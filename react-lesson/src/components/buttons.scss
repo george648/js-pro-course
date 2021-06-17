@@ -1,0 +1,7 @@
+.primary { 
+    color: green;
+    
+    &:active {
+        outline: none
+    }
+}
