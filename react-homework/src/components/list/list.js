@@ -1,4 +1,3 @@
-import React from 'react';
 import './list.scss';
 import { ListItem } from '../listItem/ListItem';
 

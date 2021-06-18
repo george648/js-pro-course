@@ -1,4 +1,3 @@
-import React from 'react';
 import './editPencil.scss'
 
 export function EditPencil() {

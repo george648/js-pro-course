@@ -1,4 +1,3 @@
-import React from 'react';
 import { Title } from '../title/title';
 import { Tools } from '../tools/tools';
 

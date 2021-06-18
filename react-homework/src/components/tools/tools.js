@@ -1,4 +1,3 @@
-import React from 'react';
 import { CompleteTask } from './../completeTask/completeTask';
 import { EditPencil } from './../editPencil/editPencil';
 import { DeleteTaskBucket } from './../DeleteTaskBucket/DeleteTaskBucket';

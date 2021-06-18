@@ -1,4 +1,3 @@
-import React from 'react';
 import './deleteTaskBucket.scss'
 
 export function DeleteTaskBucket() {
