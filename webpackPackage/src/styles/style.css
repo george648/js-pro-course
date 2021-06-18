@@ -1,0 +1,20 @@
+@import "lato.css";
+@import "~normalize.css";
+
+
+h2W {
+    background-color: red;
+    font-family: 'lato';
+}
+
+#container {
+    width: 400px;
+    height: 400px;
+    
+    background-image: url('./../images/image.jpg');
+}
+
+.content img {
+    width: 100%;
+    height: 100%;
+}
