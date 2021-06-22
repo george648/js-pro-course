@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Article } from './components/Article';
+import { Select } from './components/select/Select';
 import './Articles.scss';
 
 import { NewArticleForm } from './components/NewArticle/NewArticleForm';
@@ -30,6 +31,7 @@ export function Articles({ articles: articlesMock }) {
   return (
     <div className="articles">
       <input onChange={onChangeDescription} />
+      <Select author={articles} />
       <NewArticleForm addTaskHendler={addTaskHendler} />
       {articles.map((article) => (
         <Article
