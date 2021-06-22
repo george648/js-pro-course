@@ -1,4 +1,3 @@
-import React from 'react';
 import List  from './components/list/list';
 // import todoList from './json/data.json';
 
@@ -36,7 +35,7 @@ function App() {
       todoList = todoList.map((toDo) => {
         if(toDo.id === id) {
           toDo.completed = !toDo.completed;
-          console.log(todoList, toDo,)
+          console.log(todoList, toDo)
         }
         return toDo
       })

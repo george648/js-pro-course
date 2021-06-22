@@ -1,9 +1,10 @@
-import './deleteTaskBucket.scss'
+import './deleteTaskBucket.scss';
+import bucket from './../../images/trash.jpg';
 
 export function DeleteTaskBucket() {
     return (
-        <div>
-            <img alt='delete task' src="./../../images/trash.jpg" />
+        <div className="imageBox">
+            <img alt='delete task' src={bucket} />
         </div>
     )
 }
