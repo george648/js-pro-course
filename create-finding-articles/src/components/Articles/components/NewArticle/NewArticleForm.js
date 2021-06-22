@@ -2,32 +2,25 @@ import { useState } from 'react';
 import './NewArticleForm.scss';
 
 export const NewArticleForm = ({addTaskHendler}) => {
-  // let author; 
-  // let description;
-  // let title;
-
-  const [article, setArticle] = useState('');
-  const [emptyDescription, setDescription] = useState('');
-  const [emptyTitle, setTitle] = useState('');
+  const [author, setArticle] = useState('');
+  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('');
 
   const clickAuthorHandler = (event) => {
-    //  author = event.target.value;
      setArticle(event.target.value)
     };
 
   const changeDescription = (event) => {
     setDescription(event.target.value);
-    // description = event.target.value;
   };
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
-    // title = event.target.value;
   }; 
 
   const onSubmit = (event) => {
     event.preventDefault();
-    addTaskHendler({article, emptyDescription, emptyTitle});
+    addTaskHendler({author, description, title});
     setArticle('');
     setDescription('');
     setTitle('');
@@ -39,17 +32,17 @@ export const NewArticleForm = ({addTaskHendler}) => {
         onChange={clickAuthorHandler}
         type="text"
         placeholder="Author"
-        value={article}
+        value={author}
       />
       <input
         onChange={onChangeTitle}
         type="text"
-        value={emptyTitle}
+        value={title}
         placeholder="Title"
       />
       <textarea
         onChange={changeDescription}
-        value={emptyDescription}
+        value={description}
         name=""
         id=""
         cols="30"

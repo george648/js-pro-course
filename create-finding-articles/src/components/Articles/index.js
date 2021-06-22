@@ -12,6 +12,10 @@ export function Articles({ articles: articlesMock }) {
   const [articles, setTask] = useState(articlesMock);
 
   const addTaskHendler = ({author, description, title}) => {
+    if(!author || !description || !title) {
+      return
+    }
+    
     setTask(
       [ 
       {author, description, title,  articleId: articles.length +1 },
@@ -25,7 +29,7 @@ export function Articles({ articles: articlesMock }) {
   const onChangeDescription = ( {target: {value}} ) => {
     const newArticles = articlesMock.filter((article) => article.description.toLowerCase().includes(value.toLowerCase()));
     setTask(newArticles)
-}
+  }
 
 
   return (
