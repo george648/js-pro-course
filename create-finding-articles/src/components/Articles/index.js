@@ -20,10 +20,16 @@ export function Articles({ articles: articlesMock }) {
   }
   
   console.log(articles)
+  
+  const onChangeDescription = ( {target: {value}} ) => {
+    const newArticles = articlesMock.filter((article) => article.description.toLowerCase().includes(value.toLowerCase()));
+    setTask(newArticles)
+}
 
 
   return (
     <div className="articles">
+      <input onChange={onChangeDescription} />
       <NewArticleForm addTaskHendler={addTaskHendler} />
       {articles.map((article) => (
         <Article

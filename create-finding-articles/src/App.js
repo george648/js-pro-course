@@ -3,6 +3,7 @@ import { Articles } from './components/Articles';
 import { articles } from './data';
 
 function App() {
+
   return (
     <>
       <Header />

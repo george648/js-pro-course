@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './NewArticleForm.scss';
 
-export const NewArticleForm = ({addTaskHendler}, props) => {
-  let author; 
-  let description;
-  let title;
+export const NewArticleForm = ({addTaskHendler}) => {
+  // let author; 
+  // let description;
+  // let title;
 
   const [article, setArticle] = useState('');
   const [emptyDescription, setDescription] = useState('');
@@ -16,8 +16,8 @@ export const NewArticleForm = ({addTaskHendler}, props) => {
     };
 
   const changeDescription = (event) => {
-    // setDescription(event.target.value);
-    description = event.target.value;
+    setDescription(event.target.value);
+    // description = event.target.value;
   };
 
   const onChangeTitle = (event) => {
@@ -27,8 +27,10 @@ export const NewArticleForm = ({addTaskHendler}, props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    addTaskHendler({author, description, title});
-    // setArticle('');
+    addTaskHendler({article, emptyDescription, emptyTitle});
+    setArticle('');
+    setDescription('');
+    setTitle('');
   }
   
   return (
@@ -47,7 +49,7 @@ export const NewArticleForm = ({addTaskHendler}, props) => {
       />
       <textarea
         onChange={changeDescription}
-        // value={emptyDescription}
+        value={emptyDescription}
         name=""
         id=""
         cols="30"
