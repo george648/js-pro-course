@@ -1,5 +1,10 @@
-.header {
-  background: #61dafb;
-  margin-top: 0;
-  padding: 12px 20px;
+.articles,
+.tags, 
+.about {
+  margin-right: 18px;
+  text-decoration: none;
+
+  &.active {
+    text-decoration: underline;
+  }
 }

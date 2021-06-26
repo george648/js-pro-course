@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './NewArticleForm.scss';
 
-export const NewArticleForm = ({addTaskHendler}) => {
+export const NewArticleForm = ({addTaskHendler, onCloseForm}) => {
+
   const [author, setArticle] = useState('');
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
@@ -52,7 +53,7 @@ export const NewArticleForm = ({addTaskHendler}) => {
 
       </textarea>
       <div className="add-new-article__buttons">
-        <button type="button">Close form</button>
+        <button onClick={onCloseForm} type="button">Close form</button>
         <button type="submit">Create article</button>
       </div>
     </form>

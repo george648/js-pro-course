@@ -1,50 +1,66 @@
 import { useState } from 'react';
-import { Article } from './components/Article';
 import { Select } from './components/select/Select';
+import { SearchInput } from './components/NewArticle/searchInput/SearchInput';
 import './Articles.scss';
-
 import { NewArticleForm } from './components/NewArticle/NewArticleForm';
+import { ArticleList } from './components/ArticleList/ArticleList';
+import { Button } from './UI/Button/Button';
+import { ArticleNotFound } from './components/ArticleNotFound/ArticleNotFound';
 
 export function Articles({ articles: articlesMock }) {
-  
-  console.log(articlesMock)
-
-  const [articles, setTask] = useState(articlesMock);
+  const [articles, setArticle] = useState(articlesMock);
+  const [serachingString, setSearch] = useState('');
+  const [serachingAuthor, setAuthor] = useState('');
+  const [isFormOpened, setOpenForm] = useState(false);
 
   const addTaskHendler = ({author, description, title}) => {
     if(!author || !description || !title) {
       return
     }
     
-    setTask(
+    setArticle(
       [ 
       {author, description, title,  articleId: articles.length +1 },
       ...articles,
       ]
     )
-  }
-  
-  console.log(articles)
-  
-  const onChangeDescription = ( {target: {value}} ) => {
-    const newArticles = articlesMock.filter((article) => article.description.toLowerCase().includes(value.toLowerCase()));
-    setTask(newArticles)
+    setOpenForm(false)
+  };
+
+  const filteredArticles = articles
+  .filter((article) => article.description.includes(serachingString))
+  .filter((article) => !serachingAuthor || article.author === serachingAuthor);
+
+  const onFilterAuthor = (author) => {
+    setAuthor(author)
   }
 
+  const authorsOfArticles = articles.map((author) => author.author)
+  
+  const onSearchDescriptionInput = (searchDescriptionString) => {
+    setSearch(searchDescriptionString)
+  };
+
+  const openFormHandler = () => { 
+    setOpenForm(true)
+  }
+
+  const onCloseForm = () => {
+    setOpenForm(false)
+  }
 
   return (
     <div className="articles">
-      <input onChange={onChangeDescription} />
-      <Select author={articles} />
-      <NewArticleForm addTaskHendler={addTaskHendler} />
-      {articles.map((article) => (
-        <Article
-          key={article.articleId}
-          title={article.title}
-          description={article.description}
-          author={article.author}
-        />
-      ))}
+      <Button label="open form" onClick={openFormHandler} />
+      {isFormOpened && <NewArticleForm onCloseForm={onCloseForm} addTaskHendler={addTaskHendler} />}
+      <SearchInput onSearchDescriptionInput={onSearchDescriptionInput} />
+      <Select onFilterAuthor={onFilterAuthor}  author={authorsOfArticles} />
+      { filteredArticles.length ? (
+        <ArticleList articles={filteredArticles} />
+        ) :
+        <ArticleNotFound />
+      }
+
     </div>
   )
 }
