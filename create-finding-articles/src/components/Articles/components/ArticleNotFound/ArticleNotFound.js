@@ -1,7 +1,7 @@
 export const ArticleNotFound = () => {
     return (
         <p>
-            Articler were not found
+            Articles were not found
         </p>
     )
 }

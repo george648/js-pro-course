@@ -33,7 +33,7 @@ export function Articles({ articles: articlesMock }) {
 
   const onFilterAuthor = (author) => {
     setAuthor(author)
-  }
+  };
 
   const authorsOfArticles = articles.map((author) => author.author)
   
@@ -43,18 +43,18 @@ export function Articles({ articles: articlesMock }) {
 
   const openFormHandler = () => { 
     setOpenForm(true)
-  }
+  };
 
   const onCloseForm = () => {
     setOpenForm(false)
-  }
+  };
 
   return (
     <div className="articles">
       <Button label="open form" onClick={openFormHandler} />
       {isFormOpened && <NewArticleForm onCloseForm={onCloseForm} addTaskHendler={addTaskHendler} />}
       <SearchInput onSearchDescriptionInput={onSearchDescriptionInput} />
-      <Select onFilterAuthor={onFilterAuthor}  author={authorsOfArticles} />
+      <Select onFilterAuthor={onFilterAuthor} author={authorsOfArticles} />
       { filteredArticles.length ? (
         <ArticleList articles={filteredArticles} />
         ) :
