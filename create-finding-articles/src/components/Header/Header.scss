@@ -1,0 +1,10 @@
+.articles,
+.tags, 
+.about {
+  margin-right: 18px;
+  text-decoration: none;
+
+  &.active {
+    text-decoration: underline;
+  }
+}
