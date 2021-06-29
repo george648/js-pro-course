@@ -1,10 +1,10 @@
 import './Tag.scss';
 
-export const Tag = ({label, deleteTag}) => {
+export const Tag = ({label, deleteTagButton}) => {
     return (
         <div className="tagItem">
             <span className="tagLabel">{label}</span>
-            <button onClick={()=> deleteTag(label)} className="tagButton">x</button>
+            <button onClick={()=> deleteTagButton(label)} className="tagButton">x</button>
         </div>
     )
 }
