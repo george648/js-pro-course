@@ -1,5 +1,8 @@
-import './Article.scss';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import './Article.scss';
+import { NewArticleForm } from './../NewArticle/NewArticleForm';
+
 
 export function Article({ title, description, author, articleId }) {
   return (
@@ -13,7 +16,7 @@ export function Article({ title, description, author, articleId }) {
       <div className="article__footer">
         <div className="article__author">Author: {author}</div>
       </div>
-      <Link to={`/article-info/${articleId}`}>Open full description</Link>
+      <Link to={`/articles-info/${articleId}`}>Open full description</Link>
     </div>
   )
 }

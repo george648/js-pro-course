@@ -1,61 +1,60 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import './NewArticleForm.scss';
 
-export const NewArticleForm = ({addTaskHendler, onCloseForm}) => {
-
-  const [author, setArticle] = useState('');
+const NewArticleFormComponent = ({ createArticleHandler, onFormClose }) => {
+  const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
 
-  const clickAuthorHandler = (event) => {
-     setArticle(event.target.value)
-    };
-
-  const changeDescription = (event) => {
-    setDescription(event.target.value);
-  };
-
-  const onChangeTitle = (event) => {
-    setTitle(event.target.value);
-  }; 
-
-  const onSubmit = (event) => {
+  const addArticleHandler = (event) => {
     event.preventDefault();
-    addTaskHendler({author, description, title});
-    setArticle('');
-    setDescription('');
-    setTitle('');
+    createArticleHandler({ author, title, description });
   }
-  
+
+  const authorInputHandler = (event) => {
+    setAuthor(event.target.value);
+  }
+
+  const titleInputHandler = (event) => {
+    setTitle(event.target.value);
+  }
+
+  const descriptionInputHandler = (event) => {
+    setDescription(event.target.value);
+  }
+
+
   return (
-    <form onSubmit={onSubmit} className="add-new-article">
+    <form onSubmit={addArticleHandler} className="add-new-article">
       <input
-        onChange={clickAuthorHandler}
         type="text"
         placeholder="Author"
+        onChange={authorInputHandler}
         value={author}
       />
       <input
-        onChange={onChangeTitle}
         type="text"
-        value={title}
         placeholder="Title"
+        onChange={titleInputHandler}
+        value={title}
       />
       <textarea
-        onChange={changeDescription}
-        value={description}
         name=""
         id=""
         cols="30"
         rows="10"
         placeholder="Description"
+        onChange={descriptionInputHandler}
+        value={description}
       >
 
       </textarea>
       <div className="add-new-article__buttons">
-        <button onClick={onCloseForm} type="button">Close form</button>
+        <button type="button" onClick={onFormClose}>Close form</button>
         <button type="submit">Create article</button>
       </div>
     </form>
   )
 }
+
+export const NewArticleForm = memo(NewArticleFormComponent);

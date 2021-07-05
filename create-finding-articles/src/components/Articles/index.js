@@ -1,66 +1,101 @@
-import { useState } from 'react';
-import { Select } from './components/select/Select';
-import { SearchInput } from './components/NewArticle/searchInput/SearchInput';
+import { useState, useCallback, useMemo } from 'react';
+import { compose } from '../../utils/compose';
+import { Button } from '../UI/Button';
+import { Modal } from '../UI/Modal/Modal';
+import { NewArticleForm } from './components/NewArticle';
+// import { NewArticleForm } from './components/NewArticle/NewArticleFormClass';
+import { Search } from './components/Search';
+import { AuthorFilter } from './components/AuthorFilter';
+import { ArticlesList } from './components/ArticlesList';
+import { ArticlesNotFound } from './components/ArticlesNotFound';
+import { filterByAuthor, filterByDescription } from './utils';
+import { TagOnModal } from './../Tags/components/TagOnModal/TagOnModal';
 import './Articles.scss';
-import { NewArticleForm } from './components/NewArticle/NewArticleForm';
-import { ArticleList } from './components/ArticleList/ArticleList';
-import { Button } from './UI/Button/Button';
-import { ArticleNotFound } from './components/ArticleNotFound/ArticleNotFound';
 
 export function Articles({ articles: articlesMock }) {
-  const [articles, setArticle] = useState(articlesMock);
-  const [serachingString, setSearch] = useState('');
-  const [serachingAuthor, setAuthor] = useState('');
-  const [isFormOpened, setOpenForm] = useState(false);
+  const [articles, setArticles] = useState(articlesMock);
+  const [searchedValue, setSearchedValue] = useState('');
+  const [searchedAuthor, setAuthor] = useState('');
+  const [isFormOpened, setIsFormOpened] = useState(false);
 
-  const addTaskHendler = ({author, description, title}) => {
-    if(!author || !description || !title) {
+  const searchHandler = (value) => {
+    setSearchedValue(value);
+  };
+
+  const authorFilterHandler = useCallback((author) => {
+    setAuthor(author);
+  }, [setAuthor]);
+
+  const authors = useMemo(() => {
+    return articles.map((article) => article.author);
+  }, [articles]);
+
+  const createArticleHandler = useCallback(({ author, description, title }) => {
+    if (!author || !description || !title) {
       return
     }
+    const newArticle = { author, description, title, articleId: articlesMock.length + 1 };
+    setArticles([
+      newArticle,
+      ...articles
+    ]);
+    setIsFormOpened(false);
+  }, [setArticles, articles, setIsFormOpened]);
+
+  const openFormHandler = () => {
+    setIsFormOpened(true);
+  }
+
+  const closeFormHandler = useCallback(() => {
+    setIsFormOpened(false);
+  }, [setIsFormOpened]);
+
+  const filteredArticles = compose(
+    filterByAuthor(searchedAuthor),
+    filterByDescription(searchedValue)
+  )(articles);
+
+
+  const closeModalBtn = () => {
+    setIsFormOpened(false)
+  };
+
+  const cancelModalBtn = () => {
+    setIsFormOpened(false)
     
-    setArticle(
-      [ 
-      {author, description, title,  articleId: articles.length +1 },
-      ...articles,
-      ]
-    )
-    setOpenForm(false)
   };
 
-  const filteredArticles = articles
-  .filter((article) => article.description.includes(serachingString))
-  .filter((article) => !serachingAuthor || article.author === serachingAuthor);
+  const submitBtn = () => {
 
-  const onFilterAuthor = (author) => {
-    setAuthor(author)
+    setIsFormOpened(false)
   };
 
-  const authorsOfArticles = articles.map((author) => author.author)
-  
-  const onSearchDescriptionInput = (searchDescriptionString) => {
-    setSearch(searchDescriptionString)
-  };
-
-  const openFormHandler = () => { 
-    setOpenForm(true)
-  };
-
-  const onCloseForm = () => {
-    setOpenForm(false)
+  const onFormClose = () => {
+    setIsFormOpened(false)
   };
 
   return (
     <div className="articles">
-      <Button label="open form" onClick={openFormHandler} />
-      {isFormOpened && <NewArticleForm onCloseForm={onCloseForm} addTaskHendler={addTaskHendler} />}
-      <SearchInput onSearchDescriptionInput={onSearchDescriptionInput} />
-      <Select onFilterAuthor={onFilterAuthor} author={authorsOfArticles} />
-      { filteredArticles.length ? (
-        <ArticleList articles={filteredArticles} />
-        ) :
-        <ArticleNotFound />
-      }
 
+      {isFormOpened && (
+          <Modal cancelModalBtn={cancelModalBtn} submitBtn={submitBtn} closeModalBtn={closeModalBtn} >
+            <NewArticleForm onFormClose={onFormClose} createArticleHandler={createArticleHandler}/>
+            <TagOnModal />
+        </Modal> 
+      )}
+
+      <div className="articles__controls">
+        <Search onSearch={searchHandler} />
+        <AuthorFilter authors={authors} onFilter={authorFilterHandler} />
+        <Button label="Create article" onClick={openFormHandler} />
+
+      </div>
+
+      {filteredArticles.length ? (
+        <ArticlesList articles={filteredArticles} />
+      ) : (
+        <ArticlesNotFound />
+      )}
     </div>
   )
 }
