@@ -1,48 +1,41 @@
 import { tagsMock } from './../../../../tags';
 import { useState } from 'react';
-import { StyledTag } from './../Tag/styled'
+import { StyledTag } from './../Tag/styled';
+import cross from './../Tag/cross.svg';
 
 export const TagOnModal = () => {
-
     const [tags, setTags] = useState(tagsMock);
-    const [isTagOpened, setTagIsOpened] = useState(false);
-    const [isTagChose, setTagIsChose] = useState(false);
-    const [isTagId, setTagId] = useState('');
+    const [tagOnScreen, setTagOnScreen] = useState([]);
+    const uniqueTags = Array.from(new Set(tagOnScreen)) 
 
-    const chooseTagHandler = (event) => {
-
+    const choosingTag = (event) => {
+        setTagOnScreen(
+            [
+                event.target.value,
+                ...uniqueTags, 
+            ]
+            )
     };
 
+    const deleteTag = (event) => {
+        setTagOnScreen([]);
+    };
 
     return (
         <div className="tagOnModal">
             <span>Add tag</span>
-            <select name="tags" onChange={chooseTagHandler}>
-                {tags.map((tag) => <option>{tag.label}</option>)}      
+            <select name="tags" onChange={choosingTag}>
+                {tags.map((tag) => <option>{tag.label}</option>)}
             </select>
-            {!isTagChose &&
-                <StyledTag tag="tag" />
+            {uniqueTags.map((tag) => {
+                    return <StyledTag >
+                        {tag}
+                            <button onClick={deleteTag}>
+                                <img src={cross} />
+                            </button>
+                    </StyledTag>
+                })
             }
         </div>
     )
-}
-
-// const handleSelect = (e) => {
-//     onFilter(e.target.value);
-//   }
-
-//   const uniqueAuthors = Array.from(new Set(authors));
-
-//   return (
-//     <div className="articles__author-filter">
-//       By author:
-//       <select onChange={handleSelect} name="authors" id="authors">
-//         <option value="">All</option>
-//         {uniqueAuthors.map((author) => {
-//           return (
-//             <option value={author} key={author}>{author}</option>
-//           )
-//         })}
-//       </select>
-//     </div>
-//   )
+};

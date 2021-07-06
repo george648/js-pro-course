@@ -14,7 +14,6 @@ export const Tags = ({ tags: defaultTags } , props) => {
   const [isFormOpened, setIsFormOpened] = useState(false);
   const [isNotificationOpened, setIsNotificationOpened] = useState(false);
 
-
   const addTagHandler = (tag) => {
     setTags([
       {label: tag, id: v4()},
