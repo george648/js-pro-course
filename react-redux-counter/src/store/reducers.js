@@ -50,6 +50,6 @@ export const userReducer = (state = initialUser, action) => {
 };
 
 export const rootReducer = combineReducers({
-    userReducer: initialUser,
-    counterReducer: initialCounter,
-})
+    userReducer,
+    counterReducer,
+});
