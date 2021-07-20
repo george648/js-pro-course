@@ -22,7 +22,7 @@ subBtn.addEventListener('click', () =>{
 
 incrByValueBtn.addEventListener('click', () =>{
     store.dispatch(increaseCounterByValue(Number(inputCounterValue.value)));
-    inputCounterValue.value = ''
+    inputCounterValue.value = '';
 });
 
 decrByValueBtn.addEventListener('click', () =>{
