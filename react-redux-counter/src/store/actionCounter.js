@@ -1,11 +1,4 @@
-import {INCREASE_COUNTER, DECREASE_COUNTER, ADD_USER, INCREASE_COUNTER_BY_VALUE, DECREASE_COUNTER_BY_VALUE} from './types';
-
-export const AddUserAction = (data) => {
-    return {
-        type: ADD_USER, 
-        payload: data
-    }
-};
+import {INCREASE_COUNTER, DECREASE_COUNTER, INCREASE_COUNTER_BY_VALUE, DECREASE_COUNTER_BY_VALUE} from './types';
 
 export const increaseCounter = () => 
     ({

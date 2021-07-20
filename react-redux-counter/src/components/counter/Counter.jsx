@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import {increaseCounter, decreaseCounter, increaseCounterByValue, decreaseCounterByValue} from './../../store/action';
+import {increaseCounter, decreaseCounter, increaseCounterByValue, decreaseCounterByValue} from '../../store/actionCounter';
 import './counter.css';
 import {Content} from "./Content";
 
@@ -10,7 +10,6 @@ export const Counter = () => {
 
     const dispatch = useDispatch();
     const count = useSelector((state) => state.counter);
-
 
     const [counter, setCounter] = useState('');
 
@@ -31,7 +30,7 @@ export const Counter = () => {
     };
     const increaseCounterByValueBtnHandler = () => {
         dispatch(increaseCounterByValue(Number(counter)));
-        setCounter('')
+        setCounter('');
     };
 
     return (
