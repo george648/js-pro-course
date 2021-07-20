@@ -7,23 +7,14 @@ import {Content} from "./Content";
 
 
 export const Counter = () => {
-
     const dispatch = useDispatch();
-    const count = useSelector((state) => state.counter);
-
     const [counter, setCounter] = useState('');
 
-    const inputCounterHandler = (event) => {
-        setCounter(event.target.value)
-    }
+    const inputCounterHandler = (event) => setCounter(event.target.value);
 
+    const increaseCounterBtnHandler = () => dispatch(increaseCounter());
+    const decreaseCounterBtnHandler = () => dispatch(decreaseCounter());
 
-    const increaseCounterBtnHandler = () => {
-        dispatch(increaseCounter());
-    };
-    const decreaseCounterBtnHandler = () => {
-        dispatch(decreaseCounter());
-    };
     const decreaseCounterByValueBtnHandler = () => {
         dispatch(decreaseCounterByValue(Number(counter)));
         setCounter('');
