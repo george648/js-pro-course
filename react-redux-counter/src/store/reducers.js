@@ -10,10 +10,7 @@ const initialUser = {
     users: []
 };
 
-
-let counter = 0;
-
-export const reducers = (state = initialCounter, action) => {
+export const counterReducer = (state = initialCounter, action) => {
     if(action.type === INCREASE_COUNTER) {
         return {
             ...state,
@@ -53,6 +50,6 @@ export const userReducer = (state = initialUser, action) => {
 };
 
 export const rootReducer = combineReducers({
-    initialUser,
-    counter,
+    userReducer: initialUser,
+    counterReducer: initialCounter,
 })

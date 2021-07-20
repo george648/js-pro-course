@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import './shownUsers.css';
 
 export const ShownUsers = () => {
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.initialUser);
 
   return (
     <div className="shownUsersWrapper">
